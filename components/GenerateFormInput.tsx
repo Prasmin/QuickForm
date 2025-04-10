@@ -2,7 +2,7 @@ import React from "react";
 
 const GenerateFormInput = () => {
   return (
-    <div className="pt-10 flex space-x-2">
+    <div className="pt-5 flex space-x-2">
       <input
         type="text"
         placeholder="write a prompt to generate form...."

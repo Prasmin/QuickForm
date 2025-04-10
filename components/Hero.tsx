@@ -23,7 +23,7 @@ const suggestionBtnText: SuggestionText[] = [
 
 const HeroSection = () => {
   return (
-    <section className="mx-auto py-20 flex flex-col justify-center  items-center">
+    <section className="mx-auto py-30 flex flex-col   items-center min-h-screen">
       <div className=" ">
         <h1 className="font-bold sm:text-4xl text-xl text-center  ">
           Create Forms in Seconds with AI
