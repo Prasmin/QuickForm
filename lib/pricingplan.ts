@@ -1,39 +1,59 @@
 export type PricingPlan = {
-  level: string;
-  price: string;
-  services: string[];
+  name: string;
+  id: string;
+  href: string;
+  priceMonthly: string;
+  description: string;
+  features: string[];
+
+  featured: boolean;
 };
 
-export const pricingPlan: PricingPlan[] = [
+export const pricingPlans: PricingPlan[] = [
   {
-    level: "Free",
-    price: "$0/month",
-    services: [
-      "3 Free Credits",
-      "Basic Supports",
-      "Limited Features",
-      "Community Access",
+    name: "Free",
+    id: "tier-free",
+    href: "#",
+    priceMonthly: "$0",
+    description:
+      "Get started for free with limited features to explore the product.",
+    features: [
+      "5 products",
+      "Up to 1,000 subscribers",
+      "Basic analytics",
+      "Email support within 48 hours",
     ],
+    featured: false,
   },
   {
-    level: "Pro",
-    price: "$29/month",
-    services: [
-      "Unlimited Credits",
-      "Basic Supports",
-      "Limited Features",
-      "Community Access",
+    name: "Hobby",
+    id: "tier-hobby",
+    href: "#",
+    priceMonthly: "$29",
+    description:
+      "The perfect plan if you're just getting started with our product.",
+    features: [
+      "25 products",
+      "Up to 10,000 subscribers",
+      "Advanced analytics",
+      "24-hour support response time",
     ],
+    featured: true,
   },
   {
-    level: "Enterprise",
-    price: "$70/month",
-    services: [
-      "Unlimited Credits",
-      "Basic Supports",
-      "Limited Features",
-      "Community Access",
-      "Monthly Updates",
+    name: "Enterprise",
+    id: "tier-enterprise",
+    href: "#",
+    priceMonthly: "$99",
+    description: "Dedicated support and infrastructure for your company.",
+    features: [
+      "Unlimited products",
+      "Unlimited subscribers",
+      "Advanced analytics",
+      "Dedicated support representative",
+      "Marketing automations",
+      "Custom integrations",
     ],
+    featured: false,
   },
 ];
