@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Cutive } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
 const cutive = Cutive({ subsets: ["latin"], weight: "400" });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${cutive.className}  antialiased  bg-[#F8F4E1]`}>
           {children}
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
