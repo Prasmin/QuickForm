@@ -33,47 +33,42 @@ export const generateForm = async (prevState: unknown, formData: FormData) => {
       };
     }
 
-    // const description = result.data.description; // after validation this is safe to use.
-    console.log("Form Submitted! Data:", formData.get("description")); // <- log here
-    return {
-      success: true,
-      message: "Form generated successfully (mocked)",
-    };
+    const description = result.data.description; // after validation this is safe to use.
+    // console.log("Form Submitted! Data:", formData.get("description")); // <- log here
+    // return {
+    //   success: true,
+    //   message: "Form generated successfully (mocked)",
+    // };
 
     if (!process.env.OPENAI_API_KEY) {
       return { success: false, message: "OPENAI api key not found" };
     }
 
-    //     const prompt = `Generate a JSON response for a form with the following structure. Ensure the keys and format remain constant in every response.
-    // {
-    //   "formTitle": "string", // The title of the form
-    //   "formFields": [        // An array of fields in the form
-    //     {
-    //       "label": "string", // The label to display for the field
-    //       "name": "string",  // The unique identifier for the field (used for form submissions)
-    //       "placeholder": "string" // The placeholder text for the field
-    //     }
-    //   ]
-    // }
-    // Requirements:
-    // - Use only the given keys: "formTitle", "formFields", "label", "name", "placeholder".
-    // - Always include at least 3 fields in the "formFields" array.
-    // - Keep the field names consistent across every generation for reliable rendering.
-    // - Provide meaningful placeholder text for each field based on its label.
-    //         `;
+    const prompt = `You are an expert form generator. 
+Generate a JSON for a form with exactly these keys: "formTitle", "formFields", "label", "name", "placeholder".
+Rules:
+- "formFields" must have at least 3 fields.
+- Field names should be consistent across forms.
+- Placeholders must match the label meaningfully.
+Return ONLY the JSON, no extra text.
+            `;
 
-    //     const completion = await openai.chat.completions.create({
-    //       model: "gpt-4.1",
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
 
-    //       messages: [{ role: "user", content: `${description} ${prompt}` }],
-    //     });
+      messages: [
+        { role: "system", content: `${prompt}` },
+        { role: "user", content: `${description} ` },
+      ],
+      max_tokens: 400,
+    });
 
-    //     const formContent = completion.choices[0]?.message.content;
-    //     if (!formContent) {
-    //       return { success: false, message: "Failed to generate form content" };
-    //     }
+    const formContent = completion.choices[0]?.message.content;
+    if (!formContent) {
+      return { success: false, message: "Failed to generate form content" };
+    }
 
-    //     console.log("generated form -> ", formContent);
+    console.log("generated form -> ", formContent);
 
     // save the generated form to the databse
     // const form = await prisma.form.create({

@@ -28,7 +28,7 @@ const HeroSection = () => {
   console.log(text);
 
   return (
-    <section className="mx-auto py-30 flex flex-col   items-center min-h-screen">
+    <section className="mx-auto  flex flex-col py-20  items-center min-h-screen">
       <div className=" ">
         <h1 className="font-bold sm:text-4xl text-xl text-center  ">
           Create Forms in Seconds with AI

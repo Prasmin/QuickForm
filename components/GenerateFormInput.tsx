@@ -47,14 +47,15 @@ const GenerateFormInput: React.FC<{ text?: string }> = ({ text }) => {
     setDescription(text);
   }, [text]);
 
-  // useEffect(() => {
-  //   if (state.success) {
-  //     toast(state.message);
-  //   } else if (state.message) {
-  //     toast.error(state.message);
-  //   }
-  // }, [state]);
+  useEffect(() => {
+    if (state?.success) {
+      toast(state.message);
+    } else if (state?.message) {
+      toast.error(state.message);
+    }
+  }, [state]);
 
+  // This effect will log the current state whenever it changes
   useEffect(() => {
     console.log("Current form state:", state);
   }, [state]);
