@@ -1,7 +1,7 @@
 "use server";
 
-// import prisma from "../lib/prisma";
-// import { currentUser } from "@clerk/nextjs/server";
+import prisma from "../lib/prisma";
+import { currentUser } from "@clerk/nextjs/server";
 import OpenAI from "openai";
 import { z } from "zod";
 
@@ -11,10 +11,11 @@ const openai = new OpenAI({
 
 export const generateForm = async (prevState: unknown, formData: FormData) => {
   try {
-    // const user = await currentUser();
-    // if (!user) {
-    //   return { sucess: false, message: "User not found" };
-    // }
+    const user = await currentUser();
+
+    if (!user) {
+      return { sucess: false, message: "User not found" };
+    }
 
     //define the schema of validation.
     const schema = z.object({
@@ -34,11 +35,6 @@ export const generateForm = async (prevState: unknown, formData: FormData) => {
     }
 
     const description = result.data.description; // after validation this is safe to use.
-    // console.log("Form Submitted! Data:", formData.get("description")); // <- log here
-    // return {
-    //   success: true,
-    //   message: "Form generated successfully (mocked)",
-    // };
 
     if (!process.env.OPENAI_API_KEY) {
       return { success: false, message: "OPENAI api key not found" };
@@ -71,18 +67,18 @@ Return ONLY the JSON, no extra text.
     console.log("generated form -> ", formContent);
 
     // save the generated form to the databse
-    // const form = await prisma.form.create({
-    //   data: {
-    //     // ownerId: user.id,
-    //     content: formContent,
-    //   },
-    // });
+    const form = await prisma.form.create({
+      data: {
+        ownerId: user.id,
+        content: formContent,
+      },
+    });
 
-    // return {
-    //   success: true,
-    //   message: "Form generated successfully.",
-    //   data: form,
-    // };
+    return {
+      success: true,
+      message: "Form generated successfully.",
+      data: form,
+    };
   } catch (error) {
     console.log("Error generated form", error);
     return {
