@@ -1,6 +1,6 @@
 import React from "react";
 
-import DashboardSidebar from "../../components/ui/DashboardSidebar";
+import DashboardSidebar from "../../../components/ui/DashboardSidebar";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
