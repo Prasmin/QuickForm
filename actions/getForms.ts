@@ -28,8 +28,6 @@ export const getForms = async () => {
       content: JSON.parse(form.content as string), // 👈 parse here
     }));
 
-    console.log(parsedForms, "parsedForms");
-
     return {
       success: true,
       message: "Forms found",

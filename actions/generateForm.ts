@@ -64,8 +64,6 @@ Return ONLY the JSON, no extra text.
       return { success: false, message: "Failed to generate form content" };
     }
 
-    console.log("generated form -> ", formContent);
-
     // save the generated form to the databse
     const form = await prisma.form.create({
       data: {

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 
 type FormField = {
@@ -26,7 +27,7 @@ const AiGeneratedForm: React.FC<AiGeneratedFormProps> = ({
   };
 
   return (
-    <div>
+    <form>
       <h2 className="font-bold text-xl mb-4">Form Fields</h2>
       {formData?.map((field: FormField, index: number) => (
         <div key={index} className="mb-4">
@@ -50,7 +51,7 @@ const AiGeneratedForm: React.FC<AiGeneratedFormProps> = ({
           Save
         </button>
       )}
-    </div>
+    </form>
   );
 };
 
