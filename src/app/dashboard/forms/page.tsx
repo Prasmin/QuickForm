@@ -1,24 +1,26 @@
-// import React from "react";
-// import prisma from "../../../../lib/prisma";
-// // import { getForms } from "../../../../actions/getForms";
-// // import { useParams } from "next/navigation";
+"use client";
+import React, { useState } from "react";
+import { getForms } from "../../../../actions/getForms";
+import { PlusIcon } from "@heroicons/react/16/solid";
+import Modal from "../../../../components/Modal";
 
-// const FormPage = async ({ params }: { params: { formId: string } }) => {
-//   const formId = params;
-//   console.log("FORM ID:", formId);
+const MyForm = () => {
+  const [open, setOpen] = useState(false);
+  // const form = await getForms();
+  return (
+    <div>
+      <section className="flex justify-between items-center p-4 ">
+        <div>
+          <h1 className="font-bold text-xl">My Form</h1>
+        </div>
+        <button className="flex items-center space-x-2 border p-3  bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 ease-in-out">
+          <PlusIcon className="h-5 w-5 " />
+          <span>Create New Form</span>
+        </button>
+      </section>
+      <Modal open={open} onClose={() => setOpen(false)} />
+    </div>
+  );
+};
 
-//   const form = await prisma.form.findUnique({
-//     where: { id: Number(formId) },
-//   });
-
-//   if (!form) {
-//     return (
-//       <h1 className="text-red-500 text-xl">
-//         No form found for id {form.formId}
-//       </h1>
-//     );
-//   }
-
-//   return <div>FormPage-{formId}</div>;
-// };
-// export default FormPage;
+export default MyForm;

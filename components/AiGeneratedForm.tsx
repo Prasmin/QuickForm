@@ -24,6 +24,7 @@ const AiGeneratedForm: React.FC<AiGeneratedFormProps> = ({
     const updatedFormFields = [...formData];
     updatedFormFields[index].value = value;
     setFormData(updatedFormFields);
+    console.log("Updated form data:", updatedFormFields);
   };
 
   return (

@@ -14,7 +14,7 @@ export const generateForm = async (prevState: unknown, formData: FormData) => {
     const user = await currentUser();
 
     if (!user) {
-      return { sucess: false, message: "User not found" };
+      return { success: false, message: "User not found" };
     }
 
     //define the schema of validation.

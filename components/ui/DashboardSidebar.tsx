@@ -30,7 +30,7 @@ const items: MenuItems[] = [
 
 export default function DashboardSidebar() {
   return (
-    <nav className="flex flex-col items-start p-4  bg-gray-600 h-screen  sm:w-1/4 text-white ">
+    <nav className="flex flex-col items-start p-4   bg-blue-500 h-screen  sm:w-1/4 text-white ">
       <h2 className="text-lg font-bold mb-4">Quick Form</h2>
       <ul className="flex flex-col pt-10 space-y-8">
         {items.map((item: MenuItems, index: number) => (
