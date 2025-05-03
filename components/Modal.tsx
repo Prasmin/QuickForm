@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+
+import { XMarkIcon } from "@heroicons/react/24/solid";
 import GenerateFormInput from "./GenerateFormInput";
 
 export default function Modal() {
@@ -19,7 +21,7 @@ export default function Modal() {
       {/* Modal Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          className="fixed inset-0 drop-shadow-xl backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50"
           onClick={() => setIsOpen(false)}
         >
           {/* Modal Box */}
@@ -32,7 +34,7 @@ export default function Modal() {
               onClick={() => setIsOpen(false)}
               className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-lg"
             >
-              ×
+              <XMarkIcon className="h-6 w-6" />
             </button>
 
             {/* Header */}
@@ -50,7 +52,7 @@ export default function Modal() {
             <div className="flex justify-end mt-4 space-x-2">
               <button
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800"
+                className="px-4 py-2 text-sm text-red-600 hover:text-red-800"
               >
                 Cancel
               </button>

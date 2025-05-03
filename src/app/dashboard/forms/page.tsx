@@ -1,24 +1,22 @@
-"use client";
-import React, { useState } from "react";
-import { getForms } from "../../../../actions/getForms";
-import { PlusIcon } from "@heroicons/react/16/solid";
-import Modal from "../../../../components/Modal";
+import React from "react";
 
-const MyForm = () => {
-  const [open, setOpen] = useState(false);
-  // const form = await getForms();
+import Modal from "../../../../components/Modal";
+import { getForms } from "../../../../actions/getForms";
+
+const MyForm = async () => {
+  const forms = await getForms();
+  console.log("Forms", forms);
   return (
     <div>
       <section className="flex justify-between items-center p-4 ">
         <div>
           <h1 className="font-bold text-xl">My Form</h1>
         </div>
-        <button className="flex items-center space-x-2 border p-3  bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 ease-in-out">
-          <PlusIcon className="h-5 w-5 " />
-          <span>Create New Form</span>
-        </button>
+        <div>
+          <Modal />
+        </div>
       </section>
-      <Modal open={open} onClose={() => setOpen(false)} />
+      <div className="grid grid-cols-3 gap-2">{}</div>
     </div>
   );
 };
