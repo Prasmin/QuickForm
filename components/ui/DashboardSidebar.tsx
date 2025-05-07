@@ -7,15 +7,10 @@ import Link from "next/link";
 type MenuItems = {
   title: string;
   url: string;
-  icon: JSX.Element;
+  icon: string;
 };
 
 const items: MenuItems[] = [
-  {
-    title: "Dashboard",
-    url: "/dashboard",
-    icon: "HomeIcon",
-  },
   {
     title: "Analytics",
     url: "/dashboard/analytics",

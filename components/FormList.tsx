@@ -4,28 +4,34 @@ import { PencilSquareIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { deleteForm } from "../actions/deleteForm";
+import toast from "react-hot-toast";
 
 type form = {
   id: number;
   ownerId: string;
   published: boolean;
-  content: JSON;
+  content: { formTitle: string };
   submissions: number;
   shareUrl: string;
+};
+
+type Props = {
+  form: form;
 };
 
 const FormList: React.FC<Props> = ({ form }) => {
   const router = useRouter();
 
-  // const deleteFormHandler = async (formId: number) => {
-  //   const data = await deleteForm(formId);
+  const deleteFormHandler = async (formId: number) => {
+    const data = await deleteForm(formId);
 
-  //   if (data.success) {
-  //     toast.success(data.message);
-  //   } else {
-  //     toast.error(data.message);
-  //   }
-  // };
+    if (data.success) {
+      toast.success(data.message);
+    } else {
+      toast.error(data.message);
+    }
+  };
 
   return (
     <div className="max-w-sm rounded-xl border border-gray-200 shadow-md p-4 bg-white">

@@ -6,7 +6,7 @@ import FormList from "../../../../components/FormList";
 
 const MyForm = async () => {
   const forms = await getForms();
- 
+
   return (
     <div>
       <section className="flex justify-between items-center p-4 ">
@@ -17,11 +17,11 @@ const MyForm = async () => {
           <Modal />
         </div>
       </section>
-      <div className="grid grid-cols-3 gap-2">{
-        forms?.data?.map((form, index: number) => (
-          <FormList key={index} form={form}/>
-
-        }</div>
+      <div className="grid grid-cols-3 gap-2">
+        {forms?.data?.map((form, index: number) => (
+          <FormList key={index} form={form} />
+        ))}
+      </div>
     </div>
   );
 };

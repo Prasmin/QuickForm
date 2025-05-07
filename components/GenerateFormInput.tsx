@@ -8,14 +8,14 @@ import { generateForm } from "../actions/generateForm";
 import toast from "react-hot-toast";
 
 type InitialState = {
-  message: string;
   success: boolean;
+  message: string;
   data?: unknown;
 };
 
 const initialState: InitialState = {
-  message: "",
   success: false,
+  message: "",
 };
 
 const SubmitButton = () => {
@@ -44,7 +44,7 @@ const GenerateFormInput: React.FC<{ text?: string }> = ({ text }) => {
   };
 
   useEffect(() => {
-    setDescription(text);
+    setDescription(text || "");
   }, [text]);
 
   useEffect(() => {
