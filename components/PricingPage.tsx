@@ -1,12 +1,38 @@
 import React from "react";
 import { pricingPlans } from "../lib/pricingplan";
 import { CheckIcon } from "@heroicons/react/16/solid";
+import { useRouter } from "next/navigation";
 
 function classNames(...classes: (string | boolean | undefined)[]): string {
   return classes.filter(Boolean).join(" ");
 }
 
-const PricingPage = () => {
+const PricingPage = ({ userId }) => {
+  const router = useRouter();
+
+  const checkoutHandler = async (price: number, plan: string) => {
+    if (!userId) {
+      router.push("/sign-in");
+    }
+    if (price === 0) {
+      return;
+    }
+    try {
+      const { sessionId } = await fetch("/api/stripe/checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ price, userId, plan }),
+      }).then((res) => res.json());
+
+      const stripe = await getStripe();
+
+      stripe?.redirectToCheckout({ sessionId });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <div>

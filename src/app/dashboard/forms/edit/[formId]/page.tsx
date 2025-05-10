@@ -2,7 +2,7 @@ import AiGeneratedForm from "../../../../../../components/AiGeneratedForm";
 import prisma from "../../../../../../lib/prisma";
 import React from "react";
 
-const Edit = async ({ params }: { params: { formId: string } }) => {
+const Edit = async ({ params }: { params: { formId: number } }) => {
   const { formId } = params;
 
   console.log("FORM ID:", formId);
