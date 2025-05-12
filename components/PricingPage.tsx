@@ -1,13 +1,19 @@
+"use client";
 import React from "react";
 import { pricingPlans } from "../lib/pricingplan";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { useRouter } from "next/navigation";
+import { getStripe } from "../lib/stripe-client";
 
 function classNames(...classes: (string | boolean | undefined)[]): string {
   return classes.filter(Boolean).join(" ");
 }
 
-const PricingPage = ({ userId }) => {
+type Props = {
+  userId: string | undefined;
+};
+
+const PricingPage: React.FC<Props> = ({ userId }) => {
   const router = useRouter();
 
   const checkoutHandler = async (price: number, plan: string) => {
@@ -120,18 +126,27 @@ const PricingPage = ({ userId }) => {
                 </li>
               ))}
             </ul>
-            <a
-              href={pricingPlan.href}
-              aria-describedby={pricingPlan.id}
+            <button
               className={classNames(
-                pricingPlan.featured
-                  ? "bg-indigo-500 text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-indigo-500"
-                  : "text-indigo-600 ring-1 ring-indigo-200 ring-inset hover:ring-indigo-300 focus-visible:outline-indigo-600",
-                "mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10"
+                pricingPlan.name === "Enterprise"
+                  ? "default text-black bg-white hover:bg-null"
+                  : "outline",
+                "w-full"
               )}
+              type="button"
+              onClick={() =>
+                checkoutHandler(
+                  pricingPlan.name === "Pro"
+                    ? 29
+                    : pricingPlan.name === "Enterprise"
+                    ? 70
+                    : 0,
+                  pricingPlan.name
+                )
+              }
             >
-              Get started today
-            </a>
+              Get started with {pricingPlan.name}
+            </button>
           </div>
         ))}
       </div>
